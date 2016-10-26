@@ -11,7 +11,7 @@ var agV = {" 3-1993": 0," 3-1994": 0," 3-1995": 0," 3-1996": 0," 3-1997": 0," 3-
 
 
 const rl = readline.createInterface({
- input: fs.createReadStream('./datafile.csv')
+ input: fs.createReadStream('../csv/datafile.csv')
 });
 rl.on('line', function(line) {
 var lineRecords= line.trim().split(',');

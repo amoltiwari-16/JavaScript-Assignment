@@ -7,7 +7,7 @@ var jsonData=[];
 var tempData={};
 var isHeader=true;
 const rl = readline.createInterface({
- input: fs.createReadStream('../datafile.csv')
+ input: fs.createReadStream('../csv/datafile.csv')
 });
 rl.on('line', function(line) {
 var lineRecords= line.trim().split(',');
