@@ -7,7 +7,7 @@ var jsonData=[];
 var tempData={};
 var isHeader=true;
 const rl = readline.createInterface({
- input: fs.createReadStream('./datafile.csv')
+ input: fs.createReadStream('../datafile.csv')
 });
 rl.on('line', function(line) {
 var lineRecords= line.trim().split(',');
@@ -80,6 +80,6 @@ console.log(tempData);
 chkwrite=false;
        tempData={};
 
-   fs.writeFileSync("foodgrain.json",JSON.stringify(jsonData),encoding="utf8");
+   fs.writeFileSync("../JSON/foodgrain.json",JSON.stringify(jsonData),encoding="utf8");
 
 });

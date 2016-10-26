@@ -7,7 +7,7 @@ var jsonData=[];
 var tempData={};
 var isHeader=true;
 const rl = readline.createInterface({
-input: fs.createReadStream('./datafile.csv')
+input: fs.createReadStream('../datafile.csv')
 });
 rl.on('line', function(line) {
 var lineRecords= line.trim().split(',');
@@ -61,6 +61,6 @@ var lineRecords= line.trim().split(',');
 
 flag=false;
 tempData={};
- fs.writeFileSync("rice.json",JSON.stringify(jsonData.filter(function(el) {return Object.keys(el).length > 0;})),encoding="utf8");
+ fs.writeFileSync("../JSON/rice.json",JSON.stringify(jsonData.filter(function(el) {return Object.keys(el).length > 0;})),encoding="utf8");
 
 });

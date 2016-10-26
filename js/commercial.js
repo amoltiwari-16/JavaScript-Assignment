@@ -56,7 +56,6 @@ var lineRecords= line.trim().split(',');
                   { if(/na/i.test(lineRecords[i]-1))
                     {
                       tempData[header[i]]=0;
-                      //console.log(lineRecords[i]+tempData[header[i]]);
                     }
                     else
                     {
@@ -92,29 +91,26 @@ var lineRecords= line.trim().split(',');
           }
   chkPush=false;
   tempData={};
-       
-   //fs.writeFileSync("commercial.json",JSON.stringify(jsonData.filter(function(el) {return Object.keys(el).length > 0;})),encoding="utf8");
 
 });
 
 rl.on('close',function(line)
 {
-  var writeStream = fs.createWriteStream('commercial.json',{'flags':'a'});
+  var writeStream = fs.createWriteStream('../JSON/commercial.json',{'flags':'a'});
   writeStream.write("[");
   
   for(var q in agV)
   {
-  //console.log( "\"year\":" +q +",\"value\":"+ agV[q]);
+  
   if(q == agV.length-1)
     writeStream.write("{\"year\":\"" +q +"\",\"value\":"+ agV[q]+"}");
   else if(q == 0)
     writeStream.write("\n{\"year\":\"" +q +"\",\"value\":"+ agV[q]+"},");
   else
     writeStream.write("\n{\"year\":\"" +q +"\",\"value\":"+ agV[q]+"},");
-
   }
 
   writeStream.write("]");
 
-  //fs.writeFileSync("commercial.json",JSON.stringify(agV),encoding="utf8");
+ 
 });

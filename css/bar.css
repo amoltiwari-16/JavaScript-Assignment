@@ -1,0 +1,16 @@
+.bar{
+   fill: steelblue;
+ }
+
+ .axis {
+   font: 15px "comic_sans";
+   font-weight: bold;
+   fill:steelblue;
+ }
+
+ .axis path,
+ .axis line {
+   fill: none;
+   stroke: #000;
+   shape-rendering: crispEdges;
+ }

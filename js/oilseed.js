@@ -7,7 +7,7 @@ var jsonData=[];
 var tempData={};
 var isHeader=true;
 const rl = readline.createInterface({
- input: fs.createReadStream('./datafile.csv')
+ input: fs.createReadStream('../datafile.csv')
 });
 rl.on('line', function(line) {
 var lineRecords= line.trim().split(',');
@@ -72,6 +72,6 @@ console.log(tempData);
 chkPush=false;
        tempData={};
 
-   fs.writeFileSync("oilseed.json",JSON.stringify(jsonData),encoding="utf8");
+   fs.writeFileSync("../JSON/oilseed.json",JSON.stringify(jsonData),encoding="utf8");
 
 });
