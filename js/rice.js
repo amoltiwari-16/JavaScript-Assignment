@@ -1,24 +1,30 @@
+//global variable declaration
 const readline=require('readline');
 const fs = require('fs');
-var fGrainCount=0;
 var flag=false;
 var header =[];
 var jsonData=[];
 var tempData={};
 var isHeader=true;
+
+//Creating interface for reading stream
 const rl = readline.createInterface({
 input: fs.createReadStream('../csv/datafile.csv')
 });
+
+
+//reading data line by line
 rl.on('line', function(line) {
 var lineRecords= line.trim().split(',');
-
+//Reading header data
    if(isHeader)
    {       
        
-           header=line.trim().split(',');
+       header=line.trim().split(',');
        isHeader=false;
    }
       else{
+            //Reading data excluding header
                for(var i=0;i<lineRecords.length;i++)
                {
 
@@ -37,10 +43,9 @@ var lineRecords= line.trim().split(',');
                      }                       
                    }
                  }
-
+                 //Checking only those row data to be taken who matched the above condition
                  if(flag==true&&/(3-200[4-9])|(3-201[0-3])/i.test(header[i]))
                  {    
-                    
                      if(i==0)
                      {
                        tempData[header[i]]=parseFloat(lineRecords[i]);
@@ -53,14 +58,13 @@ var lineRecords= line.trim().split(',');
                      {
                        tempData[header[i]]=parseFloat(lineRecords[i+1]);
                      }                  
-                 
                  }
                }jsonData.push(tempData);
 
-                  }
+            }
 
 flag=false;
 tempData={};
- fs.writeFileSync("../JSON/rice.json",JSON.stringify(jsonData.filter(function(el) {return Object.keys(el).length > 0;})),encoding="utf8");
-
+// //Writing data to JSON file
+fs.writeFileSync("../JSON/rice.json",JSON.stringify(jsonData.filter(function(el) {return Object.keys(el).length > 0;})),encoding="utf8");
 });

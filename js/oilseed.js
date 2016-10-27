@@ -1,3 +1,4 @@
+//global variable declaration
 const readline=require('readline');
 const fs = require('fs');
 var fGrainCount=0;
@@ -6,18 +7,22 @@ var header =[];
 var jsonData=[];
 var tempData={};
 var isHeader=true;
+
+//Creating interface for reading stream
 const rl = readline.createInterface({
  input: fs.createReadStream('../csv/datafile.csv')
 });
+
+//reading data line by line
 rl.on('line', function(line) {
 var lineRecords= line.trim().split(',');
-
+  //Reading header data
     if(isHeader)
     {       
       
         header=line.trim().split(',');
         isHeader=false;
-    }
+    } //Reading data excluding header
        else{
                 for(var i=0;i<lineRecords.length;i++)
                 {
@@ -40,12 +45,10 @@ var lineRecords= line.trim().split(',');
                       {
                         tempData[header[i]]=lineRecords[i+1];
                       }
-    
-                      
                     }
-                    console.log(tempData);
+  
                   }
-
+                  //Checking only those row data to be taken who matched the above condition
                   if(chkPush==true&&/3-2013/i.test(header[i]))
                   {
                       if(i==0)
@@ -63,15 +66,10 @@ var lineRecords= line.trim().split(',');
       
                         jsonData.push(tempData)
                   }
-
               }
-  
-        
-          }
-console.log(tempData); 
+          } 
 chkPush=false;
-       tempData={};
-
+tempData={};
+  //Writing data to JSON file
    fs.writeFileSync("../JSON/oilseed.json",JSON.stringify(jsonData),encoding="utf8");
-
 });
